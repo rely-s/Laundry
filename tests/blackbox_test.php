@@ -150,34 +150,20 @@ class BlackBoxTester
         $this->record($id, $scenario, $passed, $passed ? "Status berubah ke '{$targetStatus}' dan histori tercatat" : 'Histori gagal dicatat');
     }
 
-    // BB08: Tracking berdasarkan nama pelanggan
+    // BB08: Tracking token salah
     public function testBB08()
     {
         $id = 'BB08';
-        $scenario = 'Pelacakan publik cucian menggunakan nama pelanggan';
+        $scenario = 'Pelacakan publik dengan token rahasia yang salah';
+        $orderCode = 'QL-' . date('Ym') . '-0001';
+        $wrongTokenHash = hash('sha256', 'TOKEN_SALAH_99');
 
-        // 1. Nama tidak terdaftar
-        $wrongName = 'NamaTidakAdaXYZ123';
-        $stmtWrong = $this->pdo->prepare("
-            SELECT o.id FROM orders o 
-            JOIN customers c ON o.customer_id = c.id 
-            WHERE c.name LIKE ?
-        ");
-        $stmtWrong->execute(['%' . $wrongName . '%']);
-        $rejected = empty($stmtWrong->fetchAll());
+        $stmt = $this->pdo->prepare("SELECT id FROM orders WHERE order_code = ? AND tracking_token_hash = ?");
+        $stmt->execute([$orderCode, $wrongTokenHash]);
+        $found = (bool)$stmt->fetch();
 
-        // 2. Nama terdaftar (Siti)
-        $validName = 'Siti';
-        $stmtValid = $this->pdo->prepare("
-            SELECT o.id FROM orders o 
-            JOIN customers c ON o.customer_id = c.id 
-            WHERE c.name LIKE ?
-        ");
-        $stmtValid->execute(['%' . $validName . '%']);
-        $found = !empty($stmtValid->fetchAll());
-
-        $passed = $rejected && $found;
-        $this->record($id, $scenario, $passed, $passed ? "Pencarian nama valid ('{$validName}') berhasil menemukan cucian, sedangkan nama tidak terdaftar ditolak" : 'Pencarian nama gagal');
+        $rejected = !$found;
+        $this->record($id, $scenario, $rejected, $rejected ? 'Akses ditolak, data pelanggan tidak ditampilkan' : 'Data bocor dengan token salah');
     }
 
     // BB09: Pembayaran melebihi sisa tagihan

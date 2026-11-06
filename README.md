@@ -110,3 +110,4 @@ php tests/blackbox_test.php
 
 ## 📄 Lisensi & Hak Cipta
 Dikembangkan untuk keperluan Skripsi Program Studi Sistem Informasi / Teknik Informatika - Denia (2026).
+

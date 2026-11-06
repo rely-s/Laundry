@@ -1,4 +1,4 @@
-<?php
+<!--  --><?php
 /**
  * Beranda Publik Queen Laundry
  */
@@ -49,12 +49,12 @@ require_once __DIR__ . '/templates/public_header.php';
     <div class="card card-custom p-4 mb-5 border-start border-4 border-info">
         <div class="row align-items-center">
             <div class="col-md-7 mb-3 mb-md-0">
-                <h4 class="fw-bold mb-1 text-primary"><i class="bi bi-search me-2"></i>Lacak Status Cucian Berdasarkan Nama</h4>
-                <p class="text-muted mb-0">Cukup masukkan nama Anda untuk memantau apakah cucian Anda sedang dicuci, disetrika, atau sudah siap diambil.</p>
+                <h4 class="fw-bold mb-1 text-primary"><i class="bi bi-qr-code-scan me-2"></i>Sudah Punya Nota Cucian?</h4>
+                <p class="text-muted mb-0">Masukkan kode nota dan token rahasia yang tertera pada struk untuk melihat progres cucian Anda secara langsung.</p>
             </div>
             <div class="col-md-5 text-md-end">
                 <a href="/tracking.php" class="btn btn-teal px-4 py-2 rounded-pill fw-semibold">
-                    Cek Cucian Saya <i class="bi bi-arrow-right ms-1"></i>
+                    Lacak Cucian Sekarang <i class="bi bi-arrow-right ms-1"></i>
                 </a>
             </div>
         </div>
