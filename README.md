@@ -62,31 +62,57 @@ Aplikasi web sistem informasi manajemen operasional dan keuangan untuk **Queen L
 
 ---
 
-## 💻 Panduan Instalasi & Menjalankan
+## 💻 Panduan Instalasi & Menjalankan Proyek
 
 ### Prasyarat
 - PHP 8.x
 - XAMPP (MySQL / MariaDB)
 
-### Langkah Menjalankan:
-1. **Clone repositori:**
-   ```bash
-   git clone https://github.com/rely-s/Laundry.git
-   cd Laundry
-   ```
-2. **Jalankan Database MariaDB:**
-   Klik ganda file `start_mysql.bat` (atau jalankan MariaDB via XAMPP Control Panel).
-3. **Inisialisasi Database (Jika Baru Pertama Kali):**
-   ```bash
-   php database/migrate.php
-   php database/seed.php
-   ```
-4. **Jalankan Web Server:**
-   Klik ganda file `start_server.bat` atau jalankan:
-   ```bash
-   php -S 127.0.0.1:8000
-   ```
-5. Buka di browser: **`http://127.0.0.1:8000`**
+---
+
+### Cara 1: Menjalankan Manual Melalui Terminal VS Code (Direkomendasikan)
+
+Buka terminal di VS Code dengan menekan tombol **`Ctrl + ` `** (backtick) atau melalui menu **Terminal > New Terminal**:
+
+#### Langkah 1: Jalankan Database MariaDB (Terminal 1)
+Ketik perintah berikut pada terminal:
+```powershell
+.\start_mysql.bat
+```
+> *Catatan: Biarkan tab terminal ini tetap terbuka (jangan ditutup).*
+
+#### Langkah 2: Jalankan Web Server PHP (Terminal 2)
+1. Buka tab terminal baru di VS Code dengan mengklik tombol **`+`** (*New Terminal*) di pojok kanan panel terminal.
+2. Jalankan server lokal PHP:
+```powershell
+php -S 127.0.0.1:8000
+```
+Jika berhasil, terminal akan memunculkan status:
+`[Development Server (http://127.0.0.1:8000) started]`
+
+#### Langkah 3: Buka Aplikasi di Browser
+Buka browser (Google Chrome / Edge) dan akses:
+- **Halaman Utama Publik:** `http://127.0.0.1:8000`
+- **Panel Login Admin:** `http://127.0.0.1:8000/login.php`
+- **Pelacakan Status Cucian:** `http://127.0.0.1:8000/tracking.php`
+
+#### Cara Menghentikan Server
+Bila sudah selesai menggunakan aplikasi, klik pada masing-masing tab terminal lalu tekan tombol **`Ctrl + C`**.
+
+---
+
+### Cara 2: Menjalankan Cepat Menggunakan File Batch
+1. **Jalankan Database:** Klik ganda file `start_mysql.bat` di File Explorer.
+2. **Jalankan Server:** Klik ganda file `start_server.bat` di File Explorer.
+3. Buka browser: `http://127.0.0.1:8000`
+
+---
+
+### Inisialisasi Database (Jika Baru Pertama Kali Setup):
+```bash
+php database/migrate.php
+php database/seed.php
+```
 
 ---
 
